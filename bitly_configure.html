@@ -1,0 +1,21 @@
+<template name="configureLoginServiceDialogForBitly">
+  <p>
+    First, you'll need to register your application with Bitly. Follow these steps:
+  </p>
+  <ol>
+    <li>
+      Visit <a href="https://bitly.com/a/create_oauth_app" target="blank">https://bitly.com/a/create_oauth_app</a>
+    </li>
+    <li>
+      Click the "Get Registration Code" button and await the email containing your application registration details.
+    </li>
+    <li>
+      Fill in the form with the application's name and description., and click "Create Your App".
+    </li>
+    <li>
+      Fill in the "App Link / Welcome page URL" field with <span class="url">{{siteUrl}}</span>.
+    </li>
+    <li>
+      Fill in the "Redirect URLs" with <span class="url">{{siteUrl}}_oauth/bitly?close</span>.
+  </ol>
+</template>
