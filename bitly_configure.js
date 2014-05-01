@@ -4,7 +4,7 @@ Template.configureLoginServiceDialogForBitly.siteUrl = function () {
 
 Template.configureLoginServiceDialogForBitly.fields = function () {
   return [
-    {property: 'client_id', label: 'Client ID'},
-    {property: 'client_secret', label: 'Client Secret'}
+    {property: 'clientId', label: 'Client ID'},
+    {property: 'secret', label: 'Client Secret'}
   ];
 };

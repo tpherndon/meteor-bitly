@@ -1,3 +1,4 @@
+(function () {
 Bitly = {};
 
 // Request Bitly credentials for the user
@@ -28,3 +29,5 @@ Bitly.requestCredential = function (options, credentialRequestCompleteCallback) 
   Oauth.initiateLogin(credentialToken, loginUrl, credentialRequestCompleteCallback,
                                 {width: 900, height: 450});
 };
+
+}).call(this);

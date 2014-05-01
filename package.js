@@ -5,7 +5,7 @@ Package.describe({
 
 Package.on_use(function (api, where) {
   api.use('oauth2', ['client', 'server']);
-//api.use('oauth', ['client', 'server']);
+  api.use('oauth', ['client', 'server']);
   api.use('http', ['server']);
   api.use(['underscore', 'service-configuration'], ['client', 'server']);
   api.use(['random', 'templating'], 'client');

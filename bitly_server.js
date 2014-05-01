@@ -1,3 +1,4 @@
+(function () {
 Bitly = {};
 
 Oauth.registerService('bitly', 2, null, function(query) {
@@ -25,6 +26,7 @@ var getAccessToken = function (query) {
   var config = ServiceConfiguration.configurations.findOne({service: 'bitly'});
   if (!config)
     throw new ServiceConfiguration.ConfigError("Service not configured");
+  console.log(query);
 
   var response;
   try {
@@ -39,7 +41,7 @@ var getAccessToken = function (query) {
           client_id: config.clientId,
           client_secret: config.secret,
           grant_type: 'authorization_code',
-          redirect_uri: Meteor.absoluteUrl("_oauth/bitly?close"),
+          redirect_uri: Meteor.absoluteUrl("_oauth/bitly?close"), //, {replaceLocalhost: true}),
           state: query.credentialToken
         }
       });
@@ -56,13 +58,15 @@ var getAccessToken = function (query) {
 
 var getIdentity = function (accessToken) {
   try {
-    return HTTP.get(
+    ident_response = HTTP.get(
       "https://api-ssl.bitly.com/v3/user/info", {
         headers: {"User-Agent": userAgent},
         params: {
           access_token: accessToken
         }
-      }).response.data;
+      });
+    console.log(ident_response.data.data);
+    return ident_response.data.data;
   } catch (err) {
     throw _.extend(new Error("Failed to fetch identity from Bitly. " + err.message),
                    {response: err.response});
@@ -73,3 +77,5 @@ var getIdentity = function (accessToken) {
 Bitly.retrieveCredential = function(credentialToken) {
   return Oauth.retrieveCredential(credentialToken);
 };
+
+}).call(this);
